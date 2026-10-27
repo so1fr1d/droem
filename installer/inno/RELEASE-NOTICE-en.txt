@@ -1,0 +1,32 @@
+﻿Drøm v1.0.0 — Credits & Licenses
+========================================================================
+
+Drøm is a native high-resolution desktop audio player for Windows 10/11 (x64).
+
+[Credits]
+Developed by so1fr1d, with Argon.
+AI-assisted development using Gemini Argon.
+Copyright (c) 2026 so1fr1d
+
+[Software License — MIT No Attribution (MIT-0)]
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+
+[Installed Legal Notices & Third-Party Licenses]
+The full license text and third-party open-source notices are installed with
+the application at:
+  - C:\Program Files\Droem\LICENSE
+  - C:\Program Files\Droem\THIRD_PARTY_NOTICES.md
+
+[File Association Policy]
+Drøm registers safely as an Open With / Default Apps candidate for 10 official
+audio formats (MP3, FLAC, WAV, M4A, AAC, OGG, OPUS, WMA, AIF, AIFF) and never
+overwrites your existing Windows Default Apps (UserChoice) settings.

@@ -1,0 +1,144 @@
+# =============================================================================
+# drøm (droem) — Official .gitignore (Phase 37 Clean Release Baseline)
+# Note: .gitignore only controls which files Git tracks; it NEVER deletes files
+# from your local disk.
+# =============================================================================
+
+# 1. Build Artifacts & Dependencies (Regenerable)
+node_modules/
+dist/
+dist-ssr/
+src-tauri/target/
+target/
+*.local
+
+# 2. Debug Symbols, Binaries & Installer Outputs (Prevent accidental commit of local paths in PDB/EXE)
+*.pdb
+*.exe
+*.msi
+*.nsis
+*.d
+*.rlib
+*.dll
+*.so
+*.dylib
+
+# 3. Internal Review, Backup & Audit Documents (Do not include in public GitHub repository)
+review/
+backup_phase36/
+APPLY_README.txt
+PROJECT_STATE.md
+CLEANUP_AUDIT.md
+PRIVACY_AUDIT.md
+SECURITY_REVIEW.md
+RELEASE_READINESS.md
+QA_CHECKLIST.md
+*진단*.md
+*보고서*.md
+
+# 4. Legacy One-off Generator Scripts & Temp Parts
+build_index_v*.py
+build_rust_v*.py
+apply_phase*.py
+part*.txt
+src-tauri/src-tauri/
+
+# 5. Personal Media, Test Audio Files & Development Screenshots (PII / Copyright Protection)
+*.mp3
+*.flac
+*.wav
+*.m4a
+*.aac
+*.ogg
+*.opus
+*.wma
+*.aif
+*.aiff
+*.wv
+*.ape
+*.mpc
+*.lrc
+스크린샷*
+*스크린샷*
+ref*
+image_*.png
+image_*.jpg
+211440.png
+210125.png
+213454.jpg
+162150.jpg
+154915.jpg
+09_35_01-1.png
+icon-jebal.png
+
+# 6. Secrets, Certificates & Code Signing Keys
+.env
+.env.*
+*.pfx
+*.p12
+*.key
+*.pem
+*.cer
+*.crt
+
+# 7. OS, Editor & Runtime Cache Files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.b64
+/src-tauri/target/
+**/target/
+**/*.rs.bk
+*.lib
+*.exp
+/src-tauri/src-tauri/
+vite.config.js
+/node_modules/
+/dist/
+/dist-ssr/
+.vite/
+*.der
+desktop.ini
+*~
+image_*
+ICON_FINAL_VERIFICATION.png
+ICON_VERIFICATION_SHEET.png
+ICON_COMPARISON_*.png
+*.tmp
+*.bak
+*.dmp
+LICENSE-FREEWARE*
+THIRD_PARTY_NOTICES_DRAFT.md
+backup_*/
+_backup_*/
+_quarantine_*/
+Droem_Backup_*/
+Droem_SafeReleaseBackup_*/
+*.zip
+PHASE38*.md
+AUDIT_AND_PORTING_SUMMARY.md
+GITHUB_PRERELEASE_DRAFT.md
+GIT_AND_BINARY_AUDIT.txt
+PERF_BENCHMARK_RESULT.json
+quarantine_manifest.*
+
+# Local archives, packaging copies, and generated installer output
+/_Phase38C_Backups/
+/installer/inno/Payload/
+/dist-installer/
+
+# Local diagnostics and private release verification (not product sources)
+/scripts/Measure_Droem_Performance.ps1
+/scripts/Repair_And_Verify_FileAssoc.ps1
+/qa/
+/test-results/
+/playwright-report/
+*.tsbuildinfo

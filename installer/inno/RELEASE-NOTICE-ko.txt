@@ -1,0 +1,24 @@
+﻿Drøm v1.0.0 — 크레딧 및 라이선스 안내 (Credits & Licenses)
+========================================================================
+
+Drøm은 Windows 10 / 11 (x64) 전용 네이티브 데스크톱 오디오 플레이어입니다.
+
+[크레딧 (Credits)]
+Developed by so1fr1d, with Argon.
+AI-assisted development using Gemini Argon.
+Copyright (c) 2026 so1fr1d
+
+[소프트웨어 라이선스 — MIT No Attribution (MIT-0)]
+본 소프트웨어는 MIT-0(MIT No Attribution) 라이선스에 따라 배포되며, 별도의 저작자
+표시 의무 없이 자유롭게 사용·복제·수정·배포할 수 있습니다. 본 소프트웨어는 상품성이나
+특정 목적 적합성에 대한 보증 없이 "있는 그대로(AS IS)" 제공됩니다.
+
+[설치 리소스 내 전체 라이선스 및 제3자 고지문]
+전체 라이선스 원문과 제3자 오픈소스 고지문은 설치 폴더에 함께 설치됩니다:
+  - C:\Program Files\Droem\LICENSE
+  - C:\Program Files\Droem\THIRD_PARTY_NOTICES.md
+
+[비파괴적 오디오 파일 연결 정책]
+Drøm은 공식 지원 10종 오디오 포맷(MP3, FLAC, WAV, M4A, AAC, OGG, OPUS, WMA,
+AIF, AIFF)의 연결 프로그램 후보로만 안전하게 등록되며, 사용자의 기존 기본 앱 설정
+(UserChoice)을 강제로 변경하지 않습니다.

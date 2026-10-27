@@ -1,0 +1,84 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Drøm",
+  "version": "1.0.0",
+  "identifier": "com.droem.player",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "macOSPrivateApi": true,
+    "windows": [
+      {
+        "label": "main",
+        "title": "drøm",
+        "width": 1280,
+        "height": 820,
+        "minWidth": 280,
+        "minHeight": 280,
+        "decorations": false,
+        "transparent": true,
+        "shadow": false,
+        "resizable": true,
+        "center": true,
+        "dragDropEnabled": true
+      }
+    ],
+    "security": {
+      "csp": null,
+      "assetProtocol": {
+        "enable": true,
+        "scope": [
+          "**"
+        ]
+      }
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "nsis"
+    ],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.ico"
+    ],
+    "resources": [
+      "icons/icon.ico",
+      "icons/icon.svg",
+      "icons/1_main_ref_clean.ico",
+      "icons/4_ui_return_dark.ico",
+      "icons/5_ui_return_light.ico",
+      "icons/audio_mp3.ico",
+      "icons/audio_flac.ico",
+      "icons/audio_wav.ico",
+      "icons/audio_m4a.ico",
+      "icons/audio_aac.ico",
+      "icons/audio_ogg.ico",
+      "icons/audio_opus.ico",
+      "icons/audio_wma.ico",
+      "icons/audio_aif.ico",
+      "icons/audio_aiff.ico",
+      "locales/*.json",
+      "../THIRD_PARTY_NOTICES.md",
+      "../LICENSE"
+    ],
+    "windows": {
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper"
+      },
+      "nsis": {
+        "installMode": "perMachine",
+        "installerIcon": "icons/icon.ico",
+        "installerHooks": "windows/hooks.nsh",
+        "sidebarImage": "windows/nsis-sidebar.bmp"
+      }
+    }
+  }
+}

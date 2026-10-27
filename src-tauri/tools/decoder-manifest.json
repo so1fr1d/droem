@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "installedResourceSubdir": "tools",
+  "expectedInstallPathOnWindows": "C:\\Program Files\\Droem\\tools",
+  "decoders": [
+    {
+      "format": "WV",
+      "binaryName": "wvunpack.exe",
+      "upstreamProject": "WavPack",
+      "upstreamVersion": "5.9.0",
+      "officialReleaseUrl": "https://github.com/dbry/WavPack/releases/download/5.9.0/wavpack-5.9.0-x64.zip",
+      "officialReleaseZipSha256": "AD5E94BCDE6F4EDFC859210D98F144F225805A391C633C68F6DBB15A9E52570E",
+      "binarySha256": "POPULATED_BY_PROVISION_SCRIPT_ON_WINDOWS",
+      "license": "BSD-3-Clause",
+      "copyright": "Copyright (c) 1998 - 2026 David Bryant. All rights reserved.",
+      "systemDllDependenciesOnly": [
+        "KERNEL32.dll",
+        "msvcrt.dll",
+        "USER32.dll",
+        "ADVAPI32.dll"
+      ],
+      "cliInvocation": [
+        "wvunpack.exe",
+        "-y",
+        "-q",
+        "<input.wv>",
+        "-o",
+        "<output.tmp.wav>"
+      ]
+    },
+    {
+      "format": "APE",
+      "binaryName": "mac.exe",
+      "upstreamProject": "Monkey's Audio Console Front End",
+      "upstreamVersion": "10.x / 11.x (x64)",
+      "officialReleaseUrl": "https://www.monkeysaudio.com/download.html",
+      "binarySha256": "POPULATED_BY_PROVISION_SCRIPT_ON_WINDOWS",
+      "license": "BSD-3-Clause (Monkey's Audio License Agreement)",
+      "copyright": "Copyright 2000-2026 by Matthew T. Ashland. All rights reserved.",
+      "systemDllDependenciesOnly": [
+        "KERNEL32.dll",
+        "USER32.dll",
+        "ADVAPI32.dll",
+        "SHELL32.dll"
+      ],
+      "cliInvocation": [
+        "mac.exe",
+        "<input.ape>",
+        "<output.tmp.wav>",
+        "-d"
+      ]
+    },
+    {
+      "format": "MPC",
+      "binaryName": "mpcdec.exe",
+      "upstreamProject": "Musepack SV8 Command-Line Decoder (libmpcdec)",
+      "upstreamVersion": "SV8 r475+",
+      "officialReleaseUrl": "https://www.musepack.net/index.php?pg=win",
+      "binarySha256": "POPULATED_BY_PROVISION_SCRIPT_ON_WINDOWS",
+      "license": "BSD-3-Clause",
+      "copyright": "Copyright (c) 2005-2009, The Musepack Development Team. All rights reserved.",
+      "systemDllDependenciesOnly": [
+        "KERNEL32.dll",
+        "msvcrt.dll"
+      ],
+      "cliInvocation": [
+        "mpcdec.exe",
+        "<input.mpc>",
+        "<output.tmp.wav>"
+      ]
+    }
+  ]
+}

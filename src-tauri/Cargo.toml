@@ -1,0 +1,37 @@
+[package]
+name = "droem"
+version = "1.0.0"
+license = "MIT-0"
+description = "drøm — Liquid Glass Local Music Player"
+authors = ["drøm"]
+edition = "2021"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["macos-private-api", "protocol-asset"] }
+tauri-plugin-single-instance = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+walkdir = "2.5"
+rayon = "1.10"
+lofty = "0.21"
+base64 = "0.22"
+rfd = "0.15"
+drag = "2"
+trash = "5"
+windows = { version = "0.58.0", features = ["Win32_System_LibraryLoader"] }
+
+[target.'cfg(target_os = "windows")'.dependencies]
+windows = { version = "0.58", features = [
+  "Media",
+  "Foundation",
+  "Storage",
+  "Storage_Streams",
+  "Win32_Foundation",
+  "Win32_UI_Shell",
+  "Win32_UI_WindowsAndMessaging",
+  "Win32_System_WinRT",
+  "Win32_System_WinRT_Media"
+] }

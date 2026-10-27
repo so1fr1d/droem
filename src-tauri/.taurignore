@@ -1,0 +1,5 @@
+# Ignore auto-generated static assets to prevent tauri dev rebuild loops
+icons/icon.svg
+icons/*.ico
+locales/
+locales/*.json
