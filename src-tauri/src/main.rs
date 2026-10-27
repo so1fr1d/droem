@@ -102,6 +102,28 @@ fn write_file_if_changed(path: &Path, new_bytes: &[u8]) -> bool {
     fs::write(path, new_bytes).is_ok()
 }
 
+// Full content keeps its original 6px inset; the additional transparent space is not part of saved sizes.
+const FULL_SHADOW_PADDING: f64 = 48.0;
+const FULL_SHADOW_EXTRA: f64 = 2.0 * (FULL_SHADOW_PADDING - 6.0);
+
+fn full_shadow_offset(scale_factor: f64) -> i32 {
+    ((FULL_SHADOW_PADDING - 6.0) * scale_factor).round() as i32
+}
+
+fn shared_window_anchor(pos: PhysicalPosition<i32>, mode: &str, scale_factor: f64) -> PhysicalPosition<i32> {
+    if mode == "full" {
+        let offset = full_shadow_offset(scale_factor);
+        PhysicalPosition::new(pos.x + offset, pos.y + offset)
+    } else {
+        pos
+    }
+}
+
+fn full_window_outer_position(anchor: PhysicalPosition<i32>, scale_factor: f64) -> PhysicalPosition<i32> {
+    let offset = full_shadow_offset(scale_factor);
+    PhysicalPosition::new(anchor.x - offset, anchor.y - offset)
+}
+
 pub struct WindowPositionMemory {
     pub current_mode: String,
     pub shared_main_pos: Option<PhysicalPosition<i32>>,
@@ -3698,14 +3720,16 @@ fn set_window_mode(
     let _ = window.set_shadow(false);
 
     let current_outer_pos = window.outer_position().ok().filter(|p| p.x > -16000 && p.y > -16000);
+    let scale_factor = window.scale_factor().unwrap_or(1.0);
+    let was_maximized = window.is_maximized().unwrap_or(false);
 
     let (prev_mode, saved_main_pos, saved_mini_pos) = if let Ok(mut mem) = pos_state.lock() {
         let prev = mem.current_mode.clone();
         if let Some(cur_pos) = current_outer_pos {
             if prev == "mini" {
                 mem.mini_pos = Some(cur_pos);
-            } else {
-                mem.shared_main_pos = Some(cur_pos);
+            } else if !(prev == "full" && was_maximized) {
+                mem.shared_main_pos = Some(shared_window_anchor(cur_pos, &prev, scale_factor));
             }
         }
         mem.current_mode = mode.clone();
@@ -3717,6 +3741,10 @@ fn set_window_mode(
         ("full".to_string(), None, None)
     };
 
+    if mode != "full" && was_maximized {
+        let _ = window.unmaximize();
+    }
+
     match mode.as_str() {
         "full" => {
             let w = custom_width.unwrap_or(1280.0).max(860.0);
@@ -3724,15 +3752,17 @@ fn set_window_mode(
             let _ = window.set_always_on_top(false);
             let _ = window.set_resizable(true);
             let _ = window.set_min_size(Some(Size::Logical(LogicalSize {
-                width: 860.0,
-                height: 560.0,
+                width: 860.0 + FULL_SHADOW_EXTRA,
+                height: 560.0 + FULL_SHADOW_EXTRA,
             })));
-            let _ = window.set_size(Size::Logical(LogicalSize {
-                width: w,
-                height: h,
-            }));
-            if let Some(saved_pos) = saved_main_pos {
-                let _ = window.set_position(Position::Physical(saved_pos));
+            if !was_maximized {
+                let _ = window.set_size(Size::Logical(LogicalSize {
+                    width: w + FULL_SHADOW_EXTRA,
+                    height: h + FULL_SHADOW_EXTRA,
+                }));
+                if let Some(saved_pos) = saved_main_pos {
+                    let _ = window.set_position(Position::Physical(full_window_outer_position(saved_pos, scale_factor)));
+                }
             }
         }
         "compact" => {
@@ -5085,12 +5115,14 @@ fn main() {
                     return;
                 }
                 if pos.x > -16000 && pos.y > -16000 {
+                    let scale_factor = window.scale_factor().unwrap_or(1.0);
+                    let is_maximized = window.is_maximized().unwrap_or(false);
                     if let Some(state) = window.try_state::<Mutex<WindowPositionMemory>>() {
                         if let Ok(mut mem) = state.try_lock() {
                             if mem.current_mode == "mini" {
                                 mem.mini_pos = Some(*pos);
-                            } else {
-                                mem.shared_main_pos = Some(*pos);
+                            } else if !(mem.current_mode == "full" && is_maximized) {
+                                mem.shared_main_pos = Some(shared_window_anchor(*pos, &mem.current_mode, scale_factor));
                             }
                         }
                     }
@@ -5112,9 +5144,10 @@ fn main() {
                 let _ = main_win.set_shadow(false);
                 let _ = main_win.set_title("dr\u{00f8}m");
                 if let Ok(pos) = main_win.outer_position() {
+                    let scale_factor = main_win.scale_factor().unwrap_or(1.0);
                     if let Some(state) = app.try_state::<Mutex<WindowPositionMemory>>() {
                         if let Ok(mut mem) = state.lock() {
-                            mem.shared_main_pos = Some(pos);
+                            mem.shared_main_pos = Some(shared_window_anchor(pos, "full", scale_factor));
                         }
                     }
                 }
