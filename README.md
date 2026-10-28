@@ -47,4 +47,10 @@ See the [installation guide](INSTALL_GUIDE.md) for more information.
 
 Made by **so1fr1d**.
 
+### Design acknowledgments
+
+Drøm's interface design draws inspiration from [AIMP](https://aimp.su/) and the AIMP custom skins **Mei** and **Wyn**. Drøm is an independent project and is not affiliated with AIMP or the skin creators.
+
+Wallpaper visible in selected screenshots: **[Johannes Plenio — Gray and White Wallpaper (Pexels)](https://www.pexels.com/photo/gray-and-white-wallpaper-1103970/)**.
+
 Drøm is open source under the [MIT No Attribution (MIT-0) license](LICENSE). Third-party rights remain separate; see the [notices](THIRD_PARTY_NOTICES.md) and [license information](THIRD_PARTY_LICENSES.txt).
